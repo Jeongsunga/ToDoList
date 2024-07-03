@@ -17,6 +17,7 @@ addButton.addEventListener("click", addTask)
 function addTask(){
     let task = {
         id : randomIDGenerate(),
+        timeCreate : new Date(),
         taskContent : taskInput.value,
         isComplete : false
     }
@@ -32,6 +33,7 @@ function render(){
         if(taskList[i].isComplete == true){
             resultHTML += `<div class="task" style="background-color: gainsboro;">
                     <div class="task-done">${taskList[i].taskContent}</div>
+                    <div>${(taskList[i].timeCreate).toLocaleString()}</div>
                     <div>
                         <i class="fa-solid fa-rotate-left" onclick="toggleComplete('${taskList[i].id}')" style="margin-right:10px; color:gray;"></i>
                         <i class="fa-solid fa-trash-can" onclick="deleteTask('${taskList[i].id}')" style="color:red"></i>
@@ -40,6 +42,7 @@ function render(){
         } else{
             resultHTML += `<div class="task">
                     <div>${taskList[i].taskContent}</div>
+                    <div>${(taskList[i].timeCreate).toLocaleString()}</div>
                     <div>
                         <i class="fa-solid fa-check" onclick="toggleComplete('${taskList[i].id}')" style="margin-right:10px; color:green"></i>
                         <i class="fa-solid fa-trash-can" onclick="deleteTask('${taskList[i].id}')" style="color:red"></i>

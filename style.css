@@ -12,11 +12,12 @@ body{
 }
 
 .task-area{
-    border: 1px solid lightgrey;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
 }
 .task-tabs{
     display: flex;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 2px solid lightgrey;
     position: relative;
 }
 
@@ -26,9 +27,9 @@ body{
 
 #under-line{
     height: 4px;
-    background-color: pink;
+    background-color: green;
     position: absolute;
-    width: 80px;
+    width: 65px;
     left: 0px;
     top: 52px;
     padding: 0px;
@@ -44,3 +45,9 @@ body{
     text-decoration: line-through;
     
 }
+
+.head{
+    display: flex;
+    justify-content: space-between;
+}
+
