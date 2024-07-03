@@ -23,6 +23,7 @@ function addTask(){
     taskList.push(task)
     console.log(taskList)
     render()
+    taskInput.value = ""
 }
 
 function render(){
