@@ -11,9 +11,11 @@
 
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
+let underLine = document.getElementById("under-line");
 let tabs = document.querySelectorAll(".task-tabs div");
 let taskList = []
 let filterList = []
+let specialList = []
 let mode = 'all'
 addButton.addEventListener("click", addTask)
 taskInput.addEventListener("keyup", function(event){
@@ -26,6 +28,8 @@ for(let i = 1; i < tabs.length; i++){
     tabs[i].addEventListener("click", function(event){filter(event);})
 }
 
+tabs.forEach(tab => tab.addEventListener("click", (e) => lineIndicator(e)))
+
 function addTask(){
     if(taskInput.value == ''){
         alert("공백 불가합니다. 내용을 입력해주세요")
@@ -35,7 +39,8 @@ function addTask(){
         id : randomIDGenerate(),
         timeCreate : new Date(),
         taskContent : taskInput.value,
-        isComplete : false
+        isComplete : false,
+        isSpecial : false
     }
     taskList.push(task)
     console.log(taskList)
@@ -62,7 +67,7 @@ function render(){
                     <div>
                         <i class="fa-solid fa-rotate-left" onclick="toggleComplete('${list[i].id}')" style="margin-right:10px; color:gray;"></i>
                         <i class="fa-solid fa-trash-can" onclick="deleteTask('${list[i].id}')" style="margin-right:10px; color:red"></i>
-                        <i class="fa-regular fa-star" style="margin-right:10px; style="color:rgb(208, 215, 108)"></i>
+                        <i class="fa-regular fa-star" onclick="specialTask('${list[i].id}')" style="margin-right:10px; style="color:rgb(208, 215, 108)"></i>
                     </div>
                 </div>`
         } else{
@@ -72,13 +77,30 @@ function render(){
                     <div>
                         <i class="fa-solid fa-check" onclick="toggleComplete('${list[i].id}')" style="margin-right:10px; color:green"></i>
                         <i class="fa-solid fa-trash-can" onclick="deleteTask('${list[i].id}')" style="margin-right:10px; color:red"></i>
-                        <i class="fa-regular fa-star" style="color:rgb(208, 215, 108)"></i>
+                        <i class="fa-regular fa-star" onclick="specialTask('${list[i].id}')" style="color:rgb(208, 215, 108)"></i>
                     </div>
                 </div>`
         }
         
     }
     document.getElementById("task-board").innerHTML = resultHTML
+}
+
+function specialRender(){
+    let resultHTML = ''
+    for(let i = 0; i < specialList.length; i++){
+        resultHTML += `<div class="task">
+                    <div>${specialList[i].taskContent}</div>
+                    <div>${(specialList[i].timeCreate).toLocaleString()}</div>
+                    <div>
+                        <i class="fa-solid fa-check" onclick="toggleComplete('${specialList[i].id}')" style="margin-right:10px; color:green"></i>
+                        <i class="fa-solid fa-trash-can" onclick="deleteTask('${specialList[i].id}')" style="margin-right:10px; color:red"></i>
+                        <i class="fa-regular fa-star" onclick="specialTask('${specialList[i].id}')" style="color:rgb(208, 215, 108)"></i>
+                    </div>
+                </div>`
+        
+    }
+    document.getElementById("special-board").innerHTML = resultHTML
 }
 
 function toggleComplete(id){
@@ -113,6 +135,25 @@ function deleteTask(id){
     render();
 }
 
+function specialTask(id){
+    for(let i = 0; i < taskList.length; i++){
+        if(taskList[i].id === id){
+            taskList[i].isSpecial = !taskList[i].isSpecial;
+            if(taskList[i].isSpecial){
+                specialList.push(taskList[i])
+
+            }else{
+                for(let i = 0; i < specialList.length; i++){
+                    if(specialList[i].id === id)
+                        specialList.splice(i, 1);
+                }          
+            }
+            break;
+        }
+    }
+    specialRender()
+}
+
 function filter(event){
     mode = event.target.id;
     filterList = []
@@ -137,4 +178,10 @@ function filter(event){
         }
         render()
     }
+}
+
+function lineIndicator(e){
+    underLine.style.left = e.currentTarget.offsetLeft + "px"
+    underLine.style.width = e.currentTarget.offsetWidth + "px"
+    underLine.style.top = e.currentTarget.offsetTop + e.currentTarget.offsetHeight + "px"
 }
