@@ -3,16 +3,22 @@ body{
     background-image: url(./image/back-img.avif);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: "Ga Maamli", "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
 }
 
 .container{
-    background-color: white;
-    min-height: 100vh;  /* 사용자 화면의 높이만큼 */
+    background-color: rgba(252, 248, 247, 0.844);
+    min-height: 85vh;  /* 사용자 화면의 높이만큼 */
+    margin-top : 40px;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .task-area{
-    border: 2px solid lightgrey;
+    border: 2px solid rgb(66, 167, 120);
     border-radius: 10px;
 }
 .task-tabs{
@@ -23,6 +29,7 @@ body{
 
 .task-tabs div{
     padding: 1em;
+    cursor: pointer;
 }
 
 #under-line{
@@ -49,5 +56,6 @@ body{
 .head{
     display: flex;
     justify-content: space-between;
+    padding-top: 15px;
 }
 
