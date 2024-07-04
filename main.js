@@ -132,7 +132,15 @@ function deleteTask(id){
             break;
         }
     }
+
+    for(let i = 0; i < specialList.length; i++){
+        if(specialList[i].id == id){
+            specialList.splice(i, 1);
+            break;
+        }
+    }
     render();
+    specialRender();
 }
 
 function specialTask(id){
@@ -151,7 +159,7 @@ function specialTask(id){
             break;
         }
     }
-    specialRender()
+    specialRender();
 }
 
 function filter(event){

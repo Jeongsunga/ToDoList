@@ -60,3 +60,16 @@ body{
     padding-top: 15px;
 }
 
+@media screen and (max-width: 48rem) {
+    .head{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 15px;
+        align-items: center;
+    }
+
+    #task-input{
+        width: 400px;
+    }
+}
+
