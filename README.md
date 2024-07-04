@@ -1,6 +1,6 @@
 # ToDoList
 https://makeyourtodolist100.netlify.app/
-<img width="700" alt="image" src="https://github.com/Jeongsunga/ToDoList/assets/117284577/a428f1f3-dfb7-4911-8863-32817997879c">
+<img width="800" alt="image" src="https://github.com/Jeongsunga/ToDoList/assets/117284577/a428f1f3-dfb7-4911-8863-32817997879c">
 ## 기능 설명
 * 유저가 값을 입력
 * 더하기(+) 버튼을 누르면, 할 일이 추가
@@ -21,3 +21,9 @@ https://makeyourtodolist100.netlify.app/
 * 중요한 일에 별 버튼을 누르면 Important Thins 게시판에 해당 일이 생성됨
 * 별 버튼을 한 번 더 누르면 게시판에서 삭제됨
 * 만약 해당 일이 삭제되었다면 Important Things 게시판에서도 삭제됨
+
+## UI 설명
+* 모바일 버전이 된다면,
+  1. 검색창이 제목 밑으로 내려온다.
+  2. 제목과 검색창이 center로 정렬된다.
+  3. 검색창의 크기가 커진다.
