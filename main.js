@@ -104,14 +104,32 @@ function specialRender(){
 }
 
 function toggleComplete(id){
-    for(let i = 0; i < taskList.length; i++){
-        if(taskList[i].id == id){
-            taskList[i].isComplete = !taskList[i].isComplete;
+    let list = []
+    if(mode === "all"){
+        // all taskList
+        list = taskList;
+    }else if(mode === "ongoing" || mode === "done"){
+        // ongoing & done filterList
+        list = filterList;
+    }
+    for(let i = 0; i < list.length; i++){
+        if(list[i].id == id){
+            list[i].isComplete = !list[i].isComplete;
             break;
         }
     }
+    for(let i = 0; i < filterList.length; i++){
+        if(filterList[i].id == id){
+            if(mode === "ongoing" && list[i].isComplete == true){
+                filterList.splice(i, 1);
+                break;
+            } else if(mode === "done" && list[i].isComplete == false){
+                filterList.splice(i, 1);
+                break;
+            }
+        }
+    }
     render();
-    console.log(taskList);
 }
 
 function randomIDGenerate(){
